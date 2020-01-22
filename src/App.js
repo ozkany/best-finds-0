@@ -1,7 +1,7 @@
 import React from "react";
 
 import Layout from "./components/Layout/Layout";
-import Products from "./containers/Products/Products";
+import ProductList from "./containers/ProductList/ProductList";
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <header className="App-header"></header>
 
       <Layout>
-        <Products />
+        <ProductList />
       </Layout>
     </div>
   );
