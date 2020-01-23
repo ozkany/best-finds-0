@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Product from "../../components/Product/Product";
 
-import Aux from "../../hoc/Aux";
+import AuxHoc from "../../hoc/AuxHoc";
 
 class ProductList extends Component {
   state = {
@@ -13,12 +13,12 @@ class ProductList extends Component {
 
   render() {
     return (
-      <Aux>
+      <AuxHoc>
         <div>Products Component</div>
         <div>Some other controls in Products Component</div>
 
         <Product />
-      </Aux>
+      </AuxHoc>
     );
   }
 }
