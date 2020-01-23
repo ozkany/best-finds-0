@@ -6,12 +6,6 @@ import ProductDetail from "../../components/Product/ProductDetail/ProductDetail"
 import AuxHoc from "../../hoc/AuxHoc";
 
 class ProductList extends Component {
-  constructor(props) {
-    super(props);
-
-    this.showDetails = this.showDetails.bind(this);
-  }
-
   state = {
     ProductList: [
       {
@@ -36,15 +30,15 @@ class ProductList extends Component {
           "https://ae01.alicdn.com/kf/H1438932fa7e64354a5a57c2160b255deN/Gimfun-Vintage-Silk-Matte-Floral-Phone-Case-for-Iphone-11-Case-Cartoon-Tpu-Case-for-Iphone.jpg"
       }
     ],
-    showDetails: null
+    productForModal: null
   };
 
   render() {
     return (
       <AuxHoc>
-        {this.state.showDetails ? (
-          <Modal>
-            <ProductDetail product={this.state.showDetails} />
+        {this.state.productForModal ? (
+          <Modal show={this.state.productForModal} closeModal={this.hideModal}>
+            <ProductDetail product={this.state.productForModal} />
           </Modal>
         ) : null}
         <h1>Product List</h1>
@@ -52,18 +46,19 @@ class ProductList extends Component {
           <Product
             key={p.key}
             productItem={p}
-            showDetails={() => this.showDetails(p)}
+            showDetails={() => this.showModal(p)}
           ></Product>
         ))}
       </AuxHoc>
     );
   }
 
-  showDetails = product => {
-    console.log("show details for", product);
-    const newState = { ...this.state };
-    newState.showDetails = product;
-    this.setState(newState);
+  showModal = product => {
+    this.setState({ productForModal: product });
+  };
+
+  hideModal = product => {
+    this.setState({ productForModal: null });
   };
 }
 
