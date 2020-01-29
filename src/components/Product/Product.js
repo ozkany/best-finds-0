@@ -13,6 +13,7 @@ const product = props => {
       <ProductExtras
         product={props.productItem}
         likeProduct={() => likeProduct(props.productItem.key)}
+        addClicked={props.addClicked}
       />
       <button className={styles.DetailsButton} onClick={props.showDetails}>
         DETAILS

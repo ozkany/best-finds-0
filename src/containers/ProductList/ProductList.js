@@ -6,6 +6,38 @@ import ProductDetail from "../../components/Product/ProductDetail/ProductDetail"
 import AuxHoc from "../../hoc/AuxHoc";
 
 class ProductList extends Component {
+  render() {
+    return (
+      <AuxHoc>
+        {this.state.productForModal ? (
+          <Modal show={this.state.productForModal} closeModal={this.hideModal}>
+            <ProductDetail product={this.state.productForModal} />
+          </Modal>
+        ) : null}
+        <h1>Product List</h1>
+        {this.state.ProductList.map(p => (
+          <Product
+            key={p.key}
+            productItem={p}
+            showDetails={() => this.showModal(p)}
+            addClicked={() => this.productDetailAddButtonClicked(p)}
+          ></Product>
+        ))}
+      </AuxHoc>
+    );
+  }
+
+  showModal = product => {
+    this.setState({ productForModal: product });
+  };
+
+  hideModal = product => {
+    this.setState({ productForModal: null });
+  };
+
+  productDetailAddButtonClicked = product =>
+    console.log("add clicked", product);
+
   state = {
     ProductList: [
       {
@@ -31,34 +63,6 @@ class ProductList extends Component {
       }
     ],
     productForModal: null
-  };
-
-  render() {
-    return (
-      <AuxHoc>
-        {this.state.productForModal ? (
-          <Modal show={this.state.productForModal} closeModal={this.hideModal}>
-            <ProductDetail product={this.state.productForModal} />
-          </Modal>
-        ) : null}
-        <h1>Product List</h1>
-        {this.state.ProductList.map(p => (
-          <Product
-            key={p.key}
-            productItem={p}
-            showDetails={() => this.showModal(p)}
-          ></Product>
-        ))}
-      </AuxHoc>
-    );
-  }
-
-  showModal = product => {
-    this.setState({ productForModal: product });
-  };
-
-  hideModal = product => {
-    this.setState({ productForModal: null });
   };
 }
 
