@@ -6,9 +6,8 @@ import styles from "./Product.module.css";
 const product = props => {
   return (
     <div className={styles.Product}>
-      <h3>Product Component: A Product Item Goes Here</h3>
-      <h4>{props.productItem.title}</h4>
-      <h5>{props.productItem.price} TL</h5>
+      <h3>{props.productItem.title}</h3>
+      <h4>{props.productItem.price} TL</h4>
       <img src={props.productItem.imgurl} alt={props.productItem.title} />
       <ProductExtras
         product={props.productItem}
